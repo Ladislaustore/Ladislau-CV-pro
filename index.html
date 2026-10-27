@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ladislau CV Pro | Criar currículo profissional</title>
+<style>
+:root{--navy:#101a33;--blue:#2457d6;--gold:#f0bd4f;--bg:#f4f6fb;--ink:#172033;--muted:#667085;--white:#fff;--green:#16864a}
+*{box-sizing:border-box}
+body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--bg);color:var(--ink);line-height:1.5}
+header{background:linear-gradient(135deg,#101a33,#2457d6);color:white;padding:28px 16px;text-align:center}
+.brand{font-size:clamp(27px,5vw,40px);font-weight:800;letter-spacing:.3px;margin:0}
+.brand span{color:var(--gold)}
+header p{margin:8px auto 0;max-width:650px;color:#e7ecff}
+.links{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn{display:inline-block;border:0;border-radius:10px;padding:12px 16px;text-decoration:none;font-weight:700;cursor:pointer}
+.btn-wa{background:#20c767;color:#fff}.btn-fb{background:#1877f2;color:#fff}
+main{max-width:1100px;margin:24px auto;padding:0 14px}
+.notice{background:#fff8e7;border:1px solid #f2d58d;border-radius:12px;padding:13px 15px;margin-bottom:18px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{background:white;border-radius:16px;padding:22px;box-shadow:0 7px 25px #15254a0d}
+h2{margin-top:0;color:var(--navy)}
+label{display:block;font-weight:700;font-size:14px;margin:12px 0 5px}
+input,textarea,select{width:100%;padding:12px;border:1px solid #ccd3e0;border-radius:9px;font:inherit;background:#fff}
+textarea{min-height:85px;resize:vertical}
+button.primary{width:100%;margin-top:18px;background:var(--blue);color:#fff;font-size:16px}
+.small{font-size:13px;color:var(--muted)}
+#payment{display:none;margin-top:20px;border:2px solid var(--gold);background:#fffdf6}
+.payment-number{font-size:25px;font-weight:800;letter-spacing:1px;color:var(--navy)}
+#preview{min-height:160px}
+.cv-paper{border:1px solid #d9deea;padding:20px;border-radius:8px;background:#fff}
+.cv-paper h1{margin:0;color:#172b55;font-size:27px}
+.cv-paper h3{color:#2457d6;border-bottom:1px solid #dbe3f5;padding-bottom:4px;margin-bottom:5px}
+.cv-paper p{white-space:pre-wrap;margin-top:4px}
+footer{text-align:center;padding:25px 15px;color:var(--muted);font-size:13px}
+@media(max-width:760px){.grid{grid-template-columns:1fr}.card{padding:17px}}
+@media print{header,.form-card,.notice,.links,#payment,footer,.no-print{display:none!important}body{background:white}.grid{display:block}main{margin:0;padding:0}.card{box-shadow:none;padding:0}.cv-paper{border:0}}
+</style>
+</head>
+<body>
+<header>
+  <h1 class="brand">Ladislau <span>CV Pro</span></h1>
+  <p>Cria um currículo profissional de forma simples, directamente no teu telemóvel.</p>
+  <div class="links">
+    <a class="btn btn-wa" href="https://wa.me/244975633355" target="_blank" rel="noopener">Contactar no WhatsApp</a>
+    <a class="btn btn-fb" href="https://www.facebook.com/" target="_blank" rel="noopener">Visitar Facebook</a>
+  </div>
+</header>
+<main>
+  <div class="notice"><strong>Localização:</strong> Luanda, Angola · <strong>Preço:</strong> 1.500 Kz. Preenche primeiro o formulário; as instruções de pagamento aparecem depois de gerares o currículo.</div>
+  <div class="grid">
+    <section class="card form-card">
+      <h2>1. Preenche os teus dados</h2>
+      <form id="cvForm">
+        <label for="name">Nome completo *</label><input id="name" required placeholder="Ex.: João Manuel">
+        <label for="role">Cargo pretendido *</label><input id="role" required placeholder="Ex.: Assistente administrativo">
+        <label for="phone">Telefone *</label><input id="phone" required placeholder="+244 ...">
+        <label for="email">E-mail</label><input id="email" type="email" placeholder="nome@email.com">
+        <label for="location">Cidade / País *</label><input id="location" required value="Luanda, Angola">
+        <label for="summary">Resumo profissional</label><textarea id="summary" placeholder="Fala brevemente sobre ti e os teus objectivos."></textarea>
+        <label for="experience">Experiência profissional</label><textarea id="experience" placeholder="Empresa, função e período. Se não tens experiência, escreve: À procura da primeira oportunidade."></textarea>
+        <label for="education">Formação académica *</label><textarea id="education" required placeholder="Escola, curso e ano de conclusão."></textarea>
+        <label for="skills">Competências</label><textarea id="skills" placeholder="Ex.: comunicação, informática, trabalho em equipa"></textarea>
+        <label for="languages">Idiomas</label><input id="languages" placeholder="Ex.: Português, Inglês básico">
+        <button class="btn primary" type="submit">Gerar currículo e ver pagamento</button>
+        <p class="small">Os campos com * são obrigatórios. Confirma se os dados estão correctos antes de continuar.</p>
+      </form>
+    </section>
+    <section class="card">
+      <h2>2. Pré-visualização do currículo</h2>
+      <div id="preview"><p class="small">Depois de preencheres o formulário e carregares em “Gerar currículo”, o teu currículo aparecerá aqui.</p></div>
+      <div class="no-print">
+        <button class="btn primary" type="button" onclick="window.print()">Imprimir / Guardar em PDF</button>
+        <button class="btn" style="background:#e8edfa;color:#172033;width:100%;margin-top:8px" type="button" onclick="downloadText()">Descarregar em texto</button>
+      </div>
+    </section>
+  </div>
+  <section id="payment" class="card">
+    <h2>3. Pagamento — 1.500 Kz</h2>
+    <p>O formulário foi preenchido. Para solicitar o serviço, envia <strong>1.500 Kz</strong> através de <strong>Xpress ou PayPay</strong> para o número indicado abaixo.</p>
+    <div class="payment-number">975 633 355</div>
+    <p><strong>Importante:</strong> confirma o nome do destinatário antes de enviares o dinheiro. Depois do pagamento, envia o comprovativo pelo WhatsApp para <strong>975 633 355</strong>, indicando o teu nome.</p>
+    <a class="btn btn-wa" href="https://wa.me/244975633355?text=Ol%C3%A1%2C%20preenchi%20o%20formul%C3%A1rio%20do%20Ladislau%20CV%20Pro.%20Quero%20enviar%20o%20comprovativo%20do%20pagamento." target="_blank" rel="noopener">Enviar comprovativo pelo WhatsApp</a>
+    <p class="small">Nota: este site não confirma pagamentos automaticamente. A confirmação é feita manualmente após receberes o comprovativo. Não envies dinheiro se não conseguires confirmar o destinatário.</p>
+  </section>
+</main>
+<footer>© Ladislau CV Pro · Luanda, Angola · Apoio pelo WhatsApp: 975 633 355</footer>
+<script>
+let currentCV = {};
+const fields = [
+  ["name","Nome completo"],["role","Cargo pretendido"],["phone","Telefone"],
+  ["email","E-mail"],["location","Cidade / País"],["summary","Resumo profissional"],
+  ["experience","Experiência profissional"],["education","Formação académica"],
+  ["skills","Competências"],["languages","Idiomas"]
+];
+document.getElementById("cvForm").addEventListener("submit", function(e){
+  e.preventDefault();
+  currentCV = {};
+  fields.forEach(([id,label]) => currentCV[label] = document.getElementById(id).value.trim());
+  const esc = s => String(s || "").replace(/[&<>"']/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  let out = `<div class="cv-paper"><h1>${esc(currentCV["Nome completo"])}</h1><p><strong>${esc(currentCV["Cargo pretendido"])}</strong><br>${esc(currentCV["Telefone"])}${currentCV["E-mail"] ? " · "+esc(currentCV["E-mail"]) : ""}<br>${esc(currentCV["Cidade / País"])}</p>`;
+  [["Resumo profissional","Resumo profissional"],["Experiência profissional","Experiência profissional"],["Formação académica","Formação académica"],["Competências","Competências"],["Idiomas","Idiomas"]].forEach(([key,title])=>{
+    if(currentCV[key]) out += `<h3>${title}</h3><p>${esc(currentCV[key])}</p>`;
+  });
+  out += `</div>`;
+  document.getElementById("preview").innerHTML = out;
+  const payment = document.getElementById("payment");
+  payment.style.display = "block";
+  payment.scrollIntoView({behavior:"smooth", block:"start"});
+});
+function downloadText(){
+  if(!currentCV["Nome completo"]){alert("Preenche o formulário e gera primeiro o currículo.");return;}
+  const body = fields.map(([id,label]) => label + ": " + (currentCV[label] || "")).join("\n\n");
+  const blob = new Blob([body], {type:"text/plain;charset=utf-8"});
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href=url; a.download="curriculo-ladislau-cv-pro.txt"; a.click();
+  URL.revokeObjectURL(url);
+}
+</script>
+</body>
+</html>
